@@ -79,7 +79,6 @@
                         </h2>
                         <div class="flex justify-between">
                             <p class="text-sm text-gray-500">
-                                 {{$latest[0]->created_at}}
                             </p>
                            <div class="flex justify-between">
                                 <div class="flex mx-3">

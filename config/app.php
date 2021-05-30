@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://citvis.herokuapp.com'),
+    'url' => env('APP_URL', 'http://citvis.herokuapp.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
