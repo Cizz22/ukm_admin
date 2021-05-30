@@ -12,11 +12,10 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'image'
     ];
 
-    public function campaigns(){
-        return $this->hasMany(Campaign::class);
+    public function request(){
+        return $this->hasMany(Request::class);
     }
 
     public function getImageAttribute($image){

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Add Category - Admin Page'])
+@extends('layouts.app', ['title' => 'Add Category - Admin Page'], ['page'=> 'Tambah Kategori'])
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
@@ -21,9 +21,9 @@
                     </label>
 
                     <label class="block mt-2" for="">
-                        <span class="text-gray-700 font-semibold">Category Image</span>
-                        <input type="file" name="image" class=" bg-gray-100 form-input mt-1 p-3 block w-full rounded-md focus:bg-white" id="">
-                        @error('image')
+                        <span class="text-gray-700 font-semibold">Detail</span>
+                        <textarea name="detail" class=" bg-gray-100 form-input mt-1 block w-full rounded-md focus:bg-white" id=""></textarea>
+                        @error('detail')
                         <div class="w-full bg-red-300 shadow-md rounded-md overflow-hidden mt-2">
                             <div class="px-4 py-2">
                                 <p class="text-gray-600 text-sm">{{$message}}</p>

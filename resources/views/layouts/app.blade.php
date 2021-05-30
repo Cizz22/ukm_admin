@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/jpg" href="https://i.imgur.com/UyXqJLi.png" />
+    <link rel="shortcut icon" type="image/jpg" href="{{ asset('storage/logo.svg')}}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
     <!-- css -->
@@ -17,6 +17,12 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 </head>
 <body>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
@@ -24,10 +30,10 @@
             class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
 
         <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
-            class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
+            class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-custom-gray overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
             <div class="flex items-center justify-center mt-4">
                 <div class="flex items-center">
-                    <svg class="h-12 w-12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {{-- <svg  viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M364.61 390.213C304.625 450.196 207.37 450.196 147.386 390.213C117.394 360.22 102.398 320.911 102.398 281.6C102.398 242.291 117.394 202.981 147.386 172.989C147.386 230.4 153.6 281.6 230.4 307.2C230.4 256 256 102.4 294.4 76.7999C320 128 334.618 142.997 364.608 172.989C394.601 202.981 409.597 242.291 409.597 281.6C409.597 320.911 394.601 360.22 364.61 390.213Z"
                             fill="#4C51BF" stroke="#4C51BF" stroke-width="2" stroke-linecap="round"
@@ -35,8 +41,29 @@
                         <path
                             d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z"
                             fill="white" />
-                    </svg>
-                    <span class="text-white text-2xl mx-2 font-semibold">DASHBOARD</span>
+                    </svg> --}}
+
+                    <svg class="h-12 w-12 -mx-3" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512" fill="none">
+
+                    <g transform="translate(0.000000,450.000000) scale(0.100000,-0.100000)"
+                    fill="#F0FFFF" stroke="none">
+                    <path d="M1765 3804 c-364 -42 -628 -129 -880 -292 -1028 -660 -1185 -2092
+                    -325 -2952 743 -743 1947 -743 2690 0 570 570 719 1440 371 2165 -263 547
+                    -763 934 -1356 1049 -153 30 -381 43 -500 30z m1057 -782 c77 -37 128 -90 167
+                    -172 22 -47 26 -68 26 -145 0 -82 -3 -97 -33 -157 -37 -77 -90 -128 -172 -167
+                    l-55 -26 -930 0 -930 0 -57 27 c-73 34 -142 103 -176 176 -23 49 -27 70 -27
+                    147 0 76 4 99 26 145 45 97 112 157 212 191 49 17 107 18 967 16 l915 -2 67
+                    -33z m410 -834 c73 -34 142 -103 176 -176 23 -49 27 -70 27 -147 0 -77 -4 -98
+                    -27 -147 -34 -73 -103 -142 -176 -176 l-57 -27 -720 0 -720 0 -57 27 c-247
+                    116 -279 455 -57 611 97 68 67 66 849 64 l705 -2 57 -27z m-1409 -835 c80 -37
+                    143 -97 179 -171 30 -60 33 -75 33 -157 0 -77 -4 -98 -27 -147 -34 -73 -103
+                    -142 -176 -176 l-57 -27 -440 0 -440 0 -57 27 c-73 34 -142 103 -176 176 -23
+                    49 -27 70 -27 147 0 76 4 99 26 145 45 97 112 157 212 192 48 16 88 18 477 15
+                    416 -2 426 -2 473 -24z"/>
+                        </svg>
+
+                        <span class="text-white text-xl mx-2 font-semibold">CITVICE</span>
                 </div>
             </div>
 
@@ -66,8 +93,8 @@
                     <span class="mx-3">Kategori</span>
                 </a>
 
-                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/campaign*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="{{route('admin.campaign.index')}}">
+                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/request*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
+                    href="{{route('admin.request.index')}}">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,11 +102,11 @@
                         </path>
                     </svg>
 
-                    <span class="mx-3">Campaigns</span>
+                    <span class="mx-3">Pengaduan</span>
                 </a>
 
                 <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/donatur*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="#">
+                    href="{{ route('admin.user.index')}}">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -87,19 +114,20 @@
                         </path>
                     </svg>
 
-                    <span class="mx-3">Donaturs</span>
+                    <span class="mx-3">User</span>
                 </a>
 
-                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/donation*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="#">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                    </svg>
+                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/slider*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
+                href="#">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
 
-                    <span class="mx-3">Donation</span>
-                </a>
+                <span class="mx-3">News</span>
+            </a>
 
                 <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/profile*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
                     href="#">
@@ -110,24 +138,14 @@
                         </path>
                     </svg>
 
-                    <span class="mx-3">Profil Saya</span>
+                    <span class="mx-3">Setting</span>
                 </a>
 
-                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/slider*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="#">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                        </path>
-                    </svg>
 
-                    <span class="mx-3">Sliders</span>
-                </a>
             </nav>
         </div>
         <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="flex justify-between items-center py-4 px-6 bg-white">
+            <header class="flex justify-between items-center py-4 px-6 bg-gray-300">
                 <div class="flex items-center">
                     <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,6 +153,9 @@
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
+                </div>
+                <div class="flex-1 px-5 items-center">
+                    <span class="text-2xl font-bold text-gray-900">{{ $page }}</span>
                 </div>
 
                 <div class="flex items-center">

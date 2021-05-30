@@ -45,16 +45,10 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:categories',
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2000'
         ]);
-
-         //upload image
-       $image = $request->file('image');
-       $image->storeAs('public/categories', $image->hashName());
 
        try {
         Category::create([
-            'image'  => $image->hashName(),
             'name'   => $request->name,
             'slug'   => Str::slug($request->name, '-')
             ]);
@@ -87,8 +81,6 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:categories,name,'.$id
         ]);
-
-        if(!$request->file('image')){
             $category = Category::findOrFail($id);
 
             try {
@@ -101,29 +93,6 @@ class CategoryController extends Controller
             } catch (QueryException $e) {
                 return redirect()->route('admin.category.index')->with(['error' => 'Data Gagal Diedit!']);
             }
-        }
-
-        else{
-            $category = Category::findOrFail($id);
-            Storage::disk('local')->delete('public/categories/'.basename($category->image));
-
-            //upload image
-            $image = $request->file('image');
-            $image->storeAs('public/categories', $image->hashName());
-
-            try {
-                $category->update([
-                    'image'  => $image->hashName(),
-                    'name'   => $request->name,
-                    'slug'   => Str::slug($request->name, '-')
-                ]);
-
-                return redirect()->route('admin.category.index')->with(['success' => 'Data Berhasil Diedit!']);
-            } catch (QueryException $e) {
-                return redirect()->route('admin.category.index')->with(['error' => 'Data Gagal Diedit!']);
-            }
-
-        }
     }
 
     /**
@@ -135,8 +104,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        Storage::disk('local')->delete('public/categories/'.basename($category->image));
-
 
         try {
             $category->delete();

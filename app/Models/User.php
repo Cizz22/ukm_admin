@@ -44,8 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function campaigns(){
-        return $this->hasMany(Campaign::class);
+    public function request(){
+        return $this->hasMany(Request::class);
     }
 
     public function getAvatarAttribute($avatar)

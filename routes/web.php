@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\admin\CampaignController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\RequestController;
+use App\Http\Controllers\admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,9 @@ Route::prefix('admin')->group(function () {
 
         //route dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
-        Route::resource('/category', CategoryController::class,['as' => 'admin']);
-        Route::resource('/campaign', CampaignController::class,['as' => 'admin']);
+        Route::resource('category', CategoryController::class,['as' => 'admin']);
+        Route::resource('request', RequestController::class,['as' => 'admin']);
+        Route::resource('user', UserController::class, ['as' => 'admin']);
 
     });
 });

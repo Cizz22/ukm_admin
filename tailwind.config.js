@@ -5,7 +5,11 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+        colors: {
+            'custom-gray': '#363740'
+          }
+    },
   },
   variants: {
     extend: {},

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Category - Admin Page'])
+@extends('layouts.app', ['title' => 'Category - Admin Page'], ['page' => 'Kategori'])
 
 @section('content')
 
@@ -29,30 +29,26 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-16 py-2">
-                                <span class="text-white">IMAGE</span>
-                            </th>
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">CATEGORY NAME</span>
+                            <th class="px-16 py-2 text-left w-2/3">
+                                <span class="text-white">KATEGORI</span>
                             </th>
                             <th class="px-16 py-2">
-                                <span class="text-white">ACTION</span>
+                                <span class="text-white">AKSI</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="bg-gray-200">
                         @forelse($categories as $category)
                             <tr class="border bg-white">
-
-                                <td class="px-16 py-2 flex justify-center">
-                                    <img src="{{ $category->image }}" class="w-10 h-100 object-fit-cover rounded-full">
-                                </td>
                                 <td class="px-16 py-2">
                                     {{ $category->name }}
                                 </td>
                                 <td class="px-10 py-2 text-center">
-                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
-                                    <button id="delete" value="{{$category->id}}" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
+                                    <div class="flex w-full justify-center">
+                                        <a href="{{ route('admin.category.edit', $category->id) }}" class="bg-indigo-600 w-7 h-7 rounded-full mx-1"><svg class="text-white w-5 h-5 mx-1 my-1" xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg></a>
+                                    <button id="{{$category->id}}" onclick="destroy(this.id)" value="" class="w-7 h-7 rounded-full bg-red-600 p-1"><svg class="text-white" fill="white" stroke="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/></svg></button>
+                                    </div>
+
                                 </td>
                             </tr>
                         @empty

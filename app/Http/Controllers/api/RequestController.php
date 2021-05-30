@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Request as ModelsRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class CampaignController extends Controller
+class RequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,14 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        return view('admin.campaign.index');
+        $req = ModelsRequest::all();
+
+        $response = [
+            'message' => 'Data Pengaduan',
+            'data' => $req
+        ];
+
+        return response()->json($response,200);
     }
 
     /**
@@ -35,7 +45,36 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'address' => 'required',
+            'message' => 'required',
+            'prioritas' => 'required',
+            'category_id' => 'required',
+        ]);
+
+
+        try {
+            $req = ModelsRequest::create([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title, '-'),
+                'address' => $request->address,
+                'message' => $request->message,
+                'prioritas' => $request->prioritas,
+                'category_id' =>$request->category_id,
+                'user_id' => 1
+            ]);
+
+            $response = [
+                'message' => 'Data Tersimpan',
+                'data' => $req
+            ];
+            return response()->json($response, 201);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => $e
+            ]);
+        }
     }
 
     /**

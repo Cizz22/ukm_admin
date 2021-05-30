@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCampaignsTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateCampaignsTable extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('description');
-            $table->string('image');
-            $table->bigInteger('target_donation');
-            $table->date('max_date');
-            $table->unsignedInteger('category_id');
+            $table->string('address');
+            $table->string('image')->nullable();
+            $table->string('message');
+            $table->enum('status', ['pending','ditolak','selesai'])->default('pending');
+            $table->enum('prioritas', ['low', 'normal','high'])->default('normal');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('category_id');
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateCampaignsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('requests');
     }
 }
