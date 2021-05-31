@@ -54,7 +54,7 @@ class CategoryController extends Controller
             ]);
         return redirect()->route('admin.category.index')->with(['success' => 'Data Berhasil Disimpan!']);
        }catch (QueryException $e) {
-        return redirect()->route('admin.category.index')->with(['error' => 'Data Gagal Disimpan!']);
+        return redirect()->route('admin.category.index')->with(['error' => $e]);
        }
     }
 
