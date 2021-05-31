@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/jpg" href="{{ asset('storage/logo.svg')}}" />
+    <link rel="shortcut icon" type="image/jpg" href="{{ asset('storage/logo.jpg')}}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
     <!-- css -->
