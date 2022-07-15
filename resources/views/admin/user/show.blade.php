@@ -9,7 +9,7 @@
                     Nama
                 </p>
                 <p class="flex flex-col">
-                    {{$user->name}}
+                    {{$user['name']}}
                 </p>
             </div>
             <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -17,24 +17,42 @@
                     Email
                 </p>
                 <p>
-                    {{$user->email}}
+                    {{$user['email']}}
                 </p>
             </div>
             <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Jumlah Laporan
+                    Whatsapp
                 </p>
                 <p>
-                    {{$user->request->count()}} Laporan
+                    {{$user['whatsapp']}}
+                </p>
+            </div>
+            <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    Bank No
+                </p>
+                <p>
+                    {{$user['bank_no']}}
+                </p>
+            </div>
+            <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    Code Ref
+                </p>
+                <p>
+                    {{$user['code_ref'] ? $user['code_ref'] : "Tidak Ada"}}
                 </p>
             </div>
             <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4">
                 <p class="text-gray-600">
-                    Avatar
+                    Bukti Pembayaran
                 </p>
 
                 <div class="container py-2 px-2 ">
-                    <img class="border-2 px-2 py-2 rounded-md w-1/4 max-w-sm" src="{{asset($user->avatar)}}" alt="">
+                   <a href="{{env('API_URL')}}/{{$user['payment_proof']}}" target="_blank">
+                       <img class="border-2 px-2 py-2 rounded-md w-1/4 max-w-sm" src="{{env('API_URL_')}}{{$user['payment_proof']}}" alt="">
+                   </a>
                     </div>
 
                 </div>

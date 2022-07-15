@@ -5,10 +5,20 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Request as ModelsRequest;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Client\HttpClientException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class RequestController extends Controller
 {
+
+    protected $api_url;
+
+    public function __construct()
+    {
+        $this->api_url = env('API_URL');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +26,10 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $requests = ModelsRequest::latest()->when(request()->q, function($requests) {
-            $requests = $requests->where('status', 'like', '%'. request()->q . '%');
-        })->paginate(10);
 
-        return view('admin.request.index')->with('requests', $requests);
+        $requests = Http::get($this->api_url."/ticketing/verification/bookingfalse")->json()['data'];
 
+        return view('admin.verifikasi-pembayaran.index')->with(compact('requests'));
     }
 
     /**
@@ -53,8 +61,8 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = ModelsRequest::find($id);
-        return view('admin.request.show')->with('request', $request);
+        $request = Http::get($this->api_url."/ticketing/$id")['data'];
+        return view('admin.verifikasi-pembayaran.show')->with(compact('request'));
     }
 
     /**
@@ -77,27 +85,24 @@ class RequestController extends Controller
      */
     public function update($id, Request $request)
     {
-        $category = ModelsRequest::findOrFail($id);
 
 
+    }
+
+    public function verifikasi($id, Request $request){
         try {
-            if($request->tipe == 'selesai')
+            if($request->tipe == 'accept')
             {
-                $category->update([
-                    'status' => 'selesai'
-                ]);
-                return response()->json([
-                    'status' => 'success'
-                ]);
+                Http::get($this->api_url."/ticketing/verification/$id/accept");
+
+                return redirect()->to(route('admin.request.index'))->with(['success' => 'Verifikasi Berhasil']);
+
             }else{
-                $category->update([
-                    'status' => 'ditolak'
-                ]);
-                return response()->json([
-                    'status' => 'success'
-                ]);
+                Http::get($this->api_url."/ticketing/verification/$id/reject");
+
+                return redirect()->to(route('admin.request.index'))->with(['success' => 'Verifikasi ditolak']);
             }
-        } catch (QueryException $e) {
+        } catch (HttpClientException $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => $e
@@ -111,21 +116,21 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $category = ModelsRequest::findOrFail($id);
+    // public function destroy($id)
+    // {
+    //     $category = ModelsRequest::findOrFail($id);
 
-        try {
-            $category->delete();
+    //     try {
+    //         $category->delete();
 
-            return response()->json([
-                'status' => 'success'
-            ]);
-        } catch (QueryException $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e
-            ]);
-        }
-    }
+    //         return response()->json([
+    //             'status' => 'success'
+    //         ]);
+    //     } catch (QueryException $e) {
+    //         return response()->json([
+    //             'status' => 'error',
+    //             'message' => $e
+    //         ]);
+    //     }
+    // }
 }

@@ -5,9 +5,17 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
+    protected $api_url;
+
+    public function __construct()
+    {
+        $this->api_url = env('API_URL');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,34 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::latest()->when(request()->q, function($user) {
-            $user = $user->where('status', 'like', '%'. request()->q . '%');
-        })->paginate(10);
-
-        return view('admin.user.index')->with('users', $user);
-
+        $users = Http::get($this->api_url.'/ticketing')->json();
+        return view('admin.user.index')->with(compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -52,41 +36,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('admin.user.show')->with('user', $user);
+        $user = Http::get($this->api_url."/ticketing/$id")->json()['data'];
+        return view('admin.user.show')->with(compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -28,9 +28,8 @@ Route::prefix('admin')->group(function () {
 
         //route dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
-        Route::resource('category', CategoryController::class,['as' => 'admin']);
         Route::resource('request', RequestController::class,['as' => 'admin']);
         Route::resource('user', UserController::class, ['as' => 'admin']);
-
+        Route::post('verifikasi/{id}', [RequestController::class, 'verifikasi'])->name('admin.verifikasi');
     });
 });

@@ -16,7 +16,7 @@
                         </svg>
                         </div>
                         <div class="mx-5">
-                            <h4 class="text-2xl font-semibold text-gray-700">{{$request_total}}</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700"></h4>
                             <div class="text-gray-500">LAPORAN TOTAL</div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             </svg>
                         </div>
                         <div class="mx-5">
-                            <h4 class="text-2xl font-semibold text-gray-700">{{$request_pending}}</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700"></h4>
                             <div class="text-gray-500">DALAM PROSES</div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="mx-5">
-                            <h4 class="text-2xl font-semibold text-gray-700">{{$request_reject}}</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700"></h4>
                             <div class="text-gray-500">TERTOLAK</div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="mx-5">
-                            <h4 class="text-2xl font-semibold text-gray-700">{{$request_success}}</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700"></h4>
                             <div class="text-gray-500">LAPORAN SELESAI</div>
                         </div>
                     </div>
@@ -69,63 +69,6 @@
         </div>
     </div>
 
-    <div class="max-h-screen h-4/5 flex overflow-x-hidden overflow-y-auto py-6 px-8 bg-gray-300 items-start">
-        <div class="bg-white w-full rounded-lg container h-full overflow-hidden mx-12 -mt-2">
-            <div class="grid grid-rows-4 grid-cols-4  h-full ">
-                <div class="row-span-5 col-span-3 px-4 py-4">
-                    <div class="p-4 border-b mb-3">
-                        <h2 class="text-2xl ">
-                            Wilayah Terlapor
-                        </h2>
-                        <div class="flex justify-between">
-                            <p class="text-sm text-gray-500">
-                            </p>
-                           <div class="flex justify-between">
-                                <div class="flex mx-3">
-                                    <span class="bg-red-500 w-6 h-6 text-red-500 rounded-full">.</span>
-                                    <span class="mx-1"> Sumber Laporan</span>
-                                </div>
-                                <div class="flex mx-3">
-                                    <span class="bg-green-500 w-6 h-6 text-green-500 rounded-full">.</span>
-                                    <span class="mx-1">Laporan Selesai</span>
-                                </div>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="max-h-screen h-full mb-3 px-1">
-                        <div id="map" class="p-7 m-5 h-5/6 flex-1 rounded-md ">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row-span-1 border-2">
-                    <div class="flex flex-col h-full max-h-sm justify-center items-center">
-                        <span class="text-md font-bold text-md text-gray-400">Laporan selesai di kota Surabaya</span>
-                        <span class="text-xl font-bold">{{$request_success}}</span>
-                    </div>
-                </div>
-                <div class="row-span-1 border-2">
-                 <div class="flex flex-col h-full max-h-sm justify-center items-center">
-                    <span class="text-md font-bold text-md text-gray-400">Rata - rata waktu penerimaan laporan</span>
-                    <span class="text-xl font-bold">3 m</span>
-                        </div>
-                </div>
-                <div class="row-span-1 border-2">
-                <div class="flex flex-col h-full max-h-sm justify-center items-center">
-                    <span class="text-md font-bold text-md text-gray-400">Rata - rata waktu penyelesaian laporan</span>
-                    <span class="text-xl font-bold">Angka</span>
-                </div>
-                </div>
-                <div class="row-span-1 border-2">
-                <div class="flex flex-col h-full max-h-sm justify-center items-center">
-                    <span class="text-md font-bold text-md text-gray-400">Efektivitas Laporan</span>
-                    <span class="text-xl font-bold">82%</span>
-                </div>
-                </div>
-              </div>
-
-            </div>
-        </div>
         <!-- support me by buying a coffee -->
     </div>
 

@@ -63,7 +63,7 @@
                     416 -2 426 -2 473 -24z"/>
                         </svg>
 
-                        <span class="text-white text-xl mx-2 font-semibold">CITVICE</span>
+                        <span class="text-white text-xl mx-2 font-semibold">UKM Expo</span>
                 </div>
             </div>
 
@@ -82,16 +82,6 @@
                     <span class="mx-3">Dashboard</span>
                 </a>
 
-                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/category*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="{{route('admin.category.index')}}">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                    </svg>
-
-                    <span class="mx-3">Kategori</span>
-                </a>
 
                 <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/request*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
                     href="{{route('admin.request.index')}}">
@@ -102,7 +92,7 @@
                         </path>
                     </svg>
 
-                    <span class="mx-3">Pengaduan</span>
+                    <span class="mx-3">Verifikasi</span>
                 </a>
 
                 <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/donatur*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
@@ -114,31 +104,7 @@
                         </path>
                     </svg>
 
-                    <span class="mx-3">User</span>
-                </a>
-
-                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/slider*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                href="#">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                    </path>
-                </svg>
-
-                <span class="mx-3">News</span>
-            </a>
-
-                <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/profile*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="#">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                        </path>
-                    </svg>
-
-                    <span class="mx-3">Setting</span>
+                    <span class="mx-3">Daftar Pembeli</span>
                 </a>
 
 
