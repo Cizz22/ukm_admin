@@ -33,10 +33,18 @@
                 </div>
                 <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                     <p class="text-gray-600">
+                        Metode Pembayaran
+                    </p>
+                    <p>
+                        {{ $request['payment_method'] }}
+                    </p>
+                </div>
+                <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                    <p class="text-gray-600">
                         Bank No
                     </p>
                     <p>
-                        {{ $request['bank_no'] }}
+                        {{ $request['payment_no'] }}
                     </p>
                 </div>
                 <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -44,7 +52,7 @@
                         Code Ref
                     </p>
                     <p>
-                        {{ $request['code_ref'] ? $request['code_ref'] : 'Tidak Ada' }}
+                        Tidak Ada
                     </p>
                 </div>
                 <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4">

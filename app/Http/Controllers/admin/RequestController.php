@@ -62,6 +62,7 @@ class RequestController extends Controller
     public function show($id)
     {
         $request = Http::get($this->api_url."/ticketing/$id")['data'];
+
         return view('admin.verifikasi-pembayaran.show')->with(compact('request'));
     }
 

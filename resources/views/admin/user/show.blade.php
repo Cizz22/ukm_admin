@@ -33,7 +33,7 @@
                     Bank No
                 </p>
                 <p>
-                    {{$user['bank_no']}}
+                    {{$user['payment_no']}}
                 </p>
             </div>
             <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -41,7 +41,7 @@
                     Code Ref
                 </p>
                 <p>
-                    {{$user['code_ref'] ? $user['code_ref'] : "Tidak Ada"}}
+                    Tidak Ada
                 </p>
             </div>
             <div class="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4">
