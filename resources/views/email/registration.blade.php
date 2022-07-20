@@ -115,9 +115,9 @@
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Terimakasih telah melakukan pemesanan tiket <b>UKM Expo 2022</b>. Admin sedang memverifikasi pembayaran tiket Anda, informasi selanjutnya akan diinformasikan menjelang acara dimulai.</p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Informasi Lebih Lanjut Melalui Sosial Media UKM Expo 2022: :
                         <br/>
-                          Instagram : <br/>
-                          Twitter : <br/>
-                          Whatsapp Center <br/>
+                          Instagram :  <a href="https://www.instagram.com/ukmexpo_its/">@ukmexpo_its</a><br/>
+                          Youtube : <a href="https://www.youtube.com/channel/UCRcX486rcfh6PrhcH80wVWw ">UKM Expo</a><br/>
+                          Whatsapp Center : +62 821-4371-9390<br/>
                         </p>
                         <p><b>Best Regards,</b><br/>
                           <b>UKM Expo 2022</b><br/>
